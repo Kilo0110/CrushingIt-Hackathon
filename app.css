@@ -101,12 +101,20 @@ body {
   /* max-height: 400px; */
 
   & > li {
-    background-color: rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     margin: 0 0.5em;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+  }
+
+  & > li:first-of-type {
+    background-color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+  }
+
+  & > li:focus-within {
+    outline: 2px solid blue;
   }
 
   & a {
@@ -118,6 +126,7 @@ body {
     color: #303030;
     padding-left: 1em;
     font-size: clamp(10px, 12px + 1vw, 16px);
+    outline: none;
   }
 
   .user-bio {
@@ -138,13 +147,14 @@ body {
 }
 
 [aria-expanded='true'] + [role='menu'] {
-  display: block;
+  display: grid;
 }
 
 main {
   max-width: 768px;
   margin: 0 auto;
   margin-top: 2em;
+  margin-bottom: 10em;
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -167,6 +177,11 @@ main {
     cursor: pointer;
   }
 
+  .close-prompt-btn:focus-visible {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+  }
+
   .trial-call-to-action {
     padding: 0.65em 1.25em;
     margin: 0.5em 0;
@@ -174,6 +189,19 @@ main {
     border: 0;
     border-radius: 5px;
     text-align: center;
+    background-color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .trial-call-to-action:hover {
+    background-color: #f7f7f7;
+  }
+
+  .trial-call-to-action:focus-visible {
+    background-color: #fff;
+    outline: 2px solid blue;
+    outline-offset: 2px;
   }
 }
 
@@ -196,8 +224,12 @@ main {
     font-size: clamp(10px, 12px + 1vw, 16px);
   }
 
-  .progress-indicator {
+  .progress-container {
     font-size: clamp(8px, 10px + 1vw, 14px);
+  }
+
+  .progress-indicator {
+    accent-color: #1a1a1a;
   }
 }
 
@@ -211,19 +243,20 @@ main {
 }
 
 .setup-step {
-  /* padding-left: 1.25em; */
-  padding-block: 0.75em;
   margin-inline: 0.5em;
+  padding-block: 0.75em;
+  padding-inline: 0.75em;
   border-radius: 10px;
+  display: flex;
 
   .checkbox-container {
-    padding-inline: 0.5em;
     position: relative;
     cursor: pointer;
+    align-self: flex-start;
+
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-    padding-block: 0.35em;
   }
 
   & input {
@@ -248,29 +281,40 @@ main {
     width: 100%;
   }
 
-  & button {
+  & input:focus + label {
+    outline: 2px solid blue;
+  }
+
+  .setup-step-btn {
     outline: none;
     border: none;
     background: none;
     font-size: clamp(12px, 12px + 1vw, 16px);
     font-weight: bold;
-    padding-left: 0.35em;
     pointer-events: all;
   }
 
-  .checkbox-container:hover,
-  .checkbox-container:focus-within {
-    background-color: rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
+  &:has(.setup-step-btn:focus) {
+    outline: 2px solid blue;
+  }
+
+  .setup-content-container {
+    padding-inline: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: flex-start;
+  }
+
+  .setup-step-btn {
+    font-size: clamp(12px, 12px + 1vw, 18px);
   }
 
   .setup-step-info {
-    padding-left: 3.85em;
-    padding-right: 1em;
     font-size: clamp(10px, 10px + 1vw, 16px);
-    max-width: 70ch;
+    max-width: 65ch;
     max-height: 0;
-    overflow: hidden;
+    overflow-y: hidden;
   }
 
   .setup-step-call-to-action {
@@ -281,9 +325,37 @@ main {
     color: #f6f3f6;
     margin-top: 0.75em;
     border-radius: 10px;
-    outline: 1px solid rgba(255, 255, 255, 0.5);
-    outline-offset: -2px;
     display: block;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: clamp(8px, 8px + 1vw, 14px);
+  }
+
+  .setup-step-call-to-action::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: inherit;
+    filter: blur(0.75px);
+    outline: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .setup-step-call-to-action:hover {
+    background-color: #2a2a2a;
+  }
+
+  .setup-step-call-to-action:focus-visible {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+  }
+
+  .setup-step-call-to-action:active {
+    outline-color: transparent;
+  }
+
+  .setup-step-call-to-action:active::after {
+    display: none;
   }
 }
 
@@ -292,6 +364,7 @@ main {
 
   .setup-step-info {
     max-height: unset;
+    overflow: unset;
   }
 }
 
@@ -348,7 +421,6 @@ main {
 
     .close-prompt-btn {
       position: initial;
-      order: 3;
     }
   }
 }

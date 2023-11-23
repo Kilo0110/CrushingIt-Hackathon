@@ -172,6 +172,9 @@
   </header>
   <main>
     <aside class="trial-prompt">
+
+      <p>Extend your trial for $1/month for 3 months on select plans.</p>
+      <button class="trial-call-to-action">Select a plan</button>
       <button class="close-prompt-btn">
         <svg
           width="31"
@@ -186,8 +189,6 @@
           />
         </svg>
       </button>
-      <p>Extend your trial for $1/month for 3 months on select plans.</p>
-      <button class="trial-call-to-action">Select a plan</button>
     </aside>
     <section class="setup-guides-container">
       <header class="setup-guide-information">
@@ -210,8 +211,17 @@
         </button>
         <h1>Setup guide</h1>
         <p>Use this personalised guide to get your store up and running.</p>
-        <div class="progress-indicator">
-          <span data-completed-steps="0">0</span> / 5 completed
+        <div class="progress-container">
+          <label
+            for="progress-indicator"
+            id="completed-steps"
+          >0</label> / 5 completed
+          <progress
+            id="progress-indicator"
+            class="progress-indicator"
+            value="0"
+            max="5"
+          ></progress>
         </div>
       </header>
       <div class="setup-step setup-step--1">
@@ -221,61 +231,65 @@
             name="setup-step"
             id="customise-online-store"
           >
-          <span class="unchecked-svg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 32 32"
-              fill="none"
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="12"
-                stroke="#000"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="4 6"
-              />
-            </svg>
-          </span>
-          <span class="checked-svg">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="#303030"
-              ></circle>
-              <path
-                d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
-                fill="#fff"
-              ></path>
-            </svg>
-          </span>
           <label for="customise-online-store">
-            <button
-              id="customise-store-btn"
-              aria-expanded="false"
-              aria-controls="customisestore"
-              aria-describedby="customisestore"
-            >Customise your online store</button>
+            <span class="unchecked-svg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="12"
+                  stroke="#000"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-dasharray="4 6"
+                />
+              </svg>
+            </span>
+            <span class="checked-svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="#303030"
+                ></circle>
+                <path
+                  d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                  fill="#fff"
+                ></path>
+              </svg>
+            </span>
           </label>
         </div>
-        <div
-          class="setup-step-info"
-          id="customisestore"
-        >
-          Choose a theme and add your logo, colors, and images to reflect your brand. <a href="#">Learn more</a>
-          <button class="setup-step-call-to-action">Customize theme</button>
+        <div class="setup-content-container">
+          <button
+            class="setup-step-btn"
+            id="customise-store-btn"
+            aria-expanded="false"
+            aria-controls="customisestore"
+            aria-describedby="customisestore"
+          >Customise your online store</button>
+          <div
+            class="setup-step-info"
+            id="customisestore"
+          >
+            Choose a theme and add your logo, colors, and images to reflect your brand. <a href="#">Learn more</a>
+            <button class="setup-step-call-to-action">Customize theme</button>
+          </div>
+
         </div>
       </div>
       <div class="setup-step setup-step--2">
@@ -285,61 +299,65 @@
             name="setup-step"
             id="add-product"
           >
-          <span class="unchecked-svg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 32 32"
-              fill="none"
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="12"
-                stroke="#000"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="4 6"
-              />
-            </svg>
-          </span>
-          <span class="checked-svg">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="#303030"
-              ></circle>
-              <path
-                d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
-                fill="#fff"
-              ></path>
-            </svg>
-          </span>
           <label for="add-product">
-            <button
-              id="add-product-btn"
-              aria-expanded="false"
-              aria-controls="addproduct"
-              aria-describedby="addproduct"
-            >Add your first product</button>
+            <span class="unchecked-svg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="12"
+                  stroke="#000"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-dasharray="4 6"
+                />
+              </svg>
+            </span>
+            <span class="checked-svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="#303030"
+                ></circle>
+                <path
+                  d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                  fill="#fff"
+                ></path>
+              </svg>
+            </span>
           </label>
         </div>
-        <div
-          class="setup-step-info"
-          id="addproduct"
-        >
-          Write a description, add photos, and set pricing for the products you plan to sell. <a href="#">Learn more</a>
-          <button class="setup-step-call-to-action">Customize theme</button>
+        <div class="setup-content-container">
+          <button
+            class="setup-step-btn"
+            id="add-product-btn"
+            aria-expanded="false"
+            aria-controls="addproduct"
+            aria-describedby="addproduct"
+          >Add your first product</button>
+          <div
+            class="setup-step-info"
+            id="addproduct"
+          >
+            Write a description, add photos, and set pricing for the products you plan to sell. <a href="#">Learn
+              more</a>
+            <button class="setup-step-call-to-action">Customize theme</button>
+          </div>
         </div>
       </div>
       <div class="setup-step setup-step--3">
@@ -349,62 +367,66 @@
             name="setup-step"
             id="add-custom-domain"
           >
-          <span class="unchecked-svg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 32 32"
-              fill="none"
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="12"
-                stroke="#000"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="4 6"
-              />
-            </svg>
-          </span>
-          <span class="checked-svg">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="#303030"
-              ></circle>
-              <path
-                d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
-                fill="#fff"
-              ></path>
-            </svg>
-          </span>
           <label for="add-custom-domain">
-            <button
-              id="add-domain-btn"
-              aria-expanded="false"
-              aria-controls="adddomain"
-              aria-describedby="adddomain"
-            >Add a custom domain</button>
+            <span class="unchecked-svg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="12"
+                  stroke="#000"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-dasharray="4 6"
+                />
+              </svg>
+            </span>
+            <span class="checked-svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="#303030"
+                ></circle>
+                <path
+                  d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                  fill="#fff"
+                ></path>
+              </svg>
+            </span>
           </label>
         </div>
-        <div
-          class="setup-step-info"
-          id="adddomain"
-        >
-          Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online
-          store. <a href="#">Learn more</a>
-          <button class="setup-step-call-to-action">Add domain</button>
+        <div class="setup-content-container">
+          <button
+            class="setup-step-btn"
+            id="add-domain-btn"
+            aria-expanded="false"
+            aria-controls="adddomain"
+            aria-describedby="adddomain"
+          >Add a custom domain</button>
+          <div
+            class="setup-step-info"
+            id="adddomain"
+          >
+            Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your
+            online
+            store. <a href="#">Learn more</a>
+            <button class="setup-step-call-to-action">Add domain</button>
+          </div>
         </div>
       </div>
       <div class="setup-step setup-step--4">
@@ -414,62 +436,66 @@
             name="setup-step"
             id="name-your-store"
           >
-          <span class="unchecked-svg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 32 32"
-              fill="none"
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="12"
-                stroke="#000"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="4 6"
-              />
-            </svg>
-          </span>
-          <span class="checked-svg">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="#303030"
-              ></circle>
-              <path
-                d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
-                fill="#fff"
-              ></path>
-            </svg>
-          </span>
           <label for="name-your-store">
-            <button
-              id="name-store-btn"
-              aria-expanded="false"
-              aria-controls="namestore"
-              aria-describedby="namestore"
-            >Customise your online store</button>
+            <span class="unchecked-svg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="12"
+                  stroke="#000"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-dasharray="4 6"
+                />
+              </svg>
+            </span>
+            <span class="checked-svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="#303030"
+                ></circle>
+                <path
+                  d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                  fill="#fff"
+                ></path>
+              </svg>
+            </span>
           </label>
         </div>
-        <div
-          class="setup-step-info"
-          id="namestore"
-        >
-          Your temporary store name is currently Davii collections. The store name appears in your admin and your online
-          store. <a href="#">Learn more</a>
-          <button class="setup-step-call-to-action">Name store</button>
+        <div class="setup-content-container">
+          <button
+            class="setup-step-btn"
+            id="name-store-btn"
+            aria-expanded="false"
+            aria-controls="namestore"
+            aria-describedby="namestore"
+          >Customise your online store</button>
+          <div
+            class="setup-step-info"
+            id="namestore"
+          >
+            Your temporary store name is currently Davii collections. The store name appears in your admin and your
+            online
+            store. <a href="#">Learn more</a>
+            <button class="setup-step-call-to-action">Name store</button>
+          </div>
         </div>
       </div>
       <div class="setup-step setup-step--5">
@@ -479,63 +505,66 @@
             name="setup-step"
             id="setup-payment-provider"
           >
-          <span class="unchecked-svg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 32 32"
-              fill="none"
-            >
-              <circle
-                cx="16"
-                cy="16"
-                r="12"
-                stroke="#000"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-dasharray="4 6"
-              />
-            </svg>
-          </span>
-          <span class="checked-svg">
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="#303030"
-              ></circle>
-              <path
-                d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
-                fill="#fff"
-              ></path>
-            </svg>
-          </span>
           <label for="setup-payment-provider">
-            <button
-              id="setup-payment-btn"
-              aria-expanded="true"
-              aria-controls="setuppaymentprovider"
-              aria-describedby="setuppaymentprovider"
-            >Setup a payment provider</button>
+            <span class="unchecked-svg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 32 32"
+                fill="none"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="12"
+                  stroke="#000"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-dasharray="4 6"
+                />
+              </svg>
+            </span>
+            <span class="checked-svg">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="#303030"
+                ></circle>
+                <path
+                  d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                  fill="#fff"
+                ></path>
+              </svg>
+            </span>
           </label>
         </div>
-        <div
-          class="setup-step-info"
-          id="setuppaymentprovider"
-        >
-          Choose a payment provider to start accepting payments. You’ll need to create an account with the payment
-          provider and
-          set it up with your Shopify store. <a href="#">Learn more</a>
-          <button class="setup-step-call-to-action">Set up payment</button>
+        <div class="setup-content-container">
+          <button
+            class="setup-step-btn"
+            id="setup-payment-btn"
+            aria-expanded="true"
+            aria-controls="setuppaymentprovider"
+            aria-describedby="setuppaymentprovider"
+          >Setup a payment provider</button>
+          <div
+            class="setup-step-info"
+            id="setuppaymentprovider"
+          >
+            Choose a payment provider to start accepting payments. You’ll need to create an account with the payment
+            provider and
+            set it up with your Shopify store. <a href="#">Learn more</a>
+            <button class="setup-step-call-to-action">Set up payment</button>
+          </div>
         </div>
       </div>
     </section>
