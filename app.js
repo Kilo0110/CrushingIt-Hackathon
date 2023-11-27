@@ -72,34 +72,31 @@ const progressIndicator = document.querySelector('#progress-indicator');
  */
 const completedStepsIndicator = document.querySelector('#completed-steps');
 
-/**
- Handles the change event of the setup step checkboxes.
- @param {Event} event - The change event.
- */
-
+// Update the value of the progress indicator with every check or uncheck of the setup steps checkboxes
 setupStepCheckboxes.forEach((checkbox) => {
-  checkbox.addEventListener('click', (event) => {
+  checkbox.addEventListener('click', () => {
     if (checkbox.checked === true) {
       const currentProgress = Number(progressIndicator.getAttribute('value'));
+      progressIndicator.setAttribute('value', `${currentProgress + 1}`);
 
       completedStepsIndicator.textContent = `${currentProgress + 1}`;
     } else {
       const currentProgress = Number(progressIndicator.getAttribute('value'));
       progressIndicator.setAttribute('value', `${currentProgress - 1}`);
-      completedStepsIndicator.textContent = `${currentProgress - 1};`;
+      completedStepsIndicator.textContent = `${currentProgress - 1}`;
     }
   });
 });
 
 /**
- Closes the trial prompt.
+ @description Closes the trial prompt.
  */
 const closeTrialPrompt = () => {
   trialPrompt.style.display = 'none';
 };
 
 /**
- Handles keypress events.
+ @description Handles keypress events within a tab trap.
  @param {Event} event - The keypress event.
  @param {Element} lastFocusedElement - The last focused element.
  @param {Element} firstTabStop - The first tab stop element in the tab trap.
@@ -130,9 +127,10 @@ const handleKeyPress = (
 };
 
 /**
- Handles the merchant profile button click event.
+ @description Handles the merchant profile button click event opening the merchant menu and initiating a tab trap
+ @returns {void}
  */
-const handleMerchantBtn = () => {
+const handleMerchantProfileBtnClick = () => {
   let lastFocusedElement;
   let firstTabStop;
   let lastTabStop;
@@ -159,7 +157,8 @@ const handleMerchantBtn = () => {
 };
 
 /**
- Handles the notification button click event.
+ @description Handles the notification button click event.
+ @returns {void}
  */
 const handleNotificationBtnClick = () => {
   if (notificationBtn.getAttribute('aria-expanded') === 'true') {
@@ -170,8 +169,9 @@ const handleNotificationBtnClick = () => {
 };
 
 /**
- Opens a setup step.
+ @description Opens the setup step whose control button was clicked. If the step is already open, it does nothing
  @param {Event} ev - The click event.
+ @returns {void}
  */
 const openSetupStep = (ev) => {
   let currentSetupBtn = ev.target;
@@ -201,7 +201,8 @@ const openSetupStep = (ev) => {
 };
 
 /**
- Handles the guide state toggle event.
+ * @description Toggles the visibility of the guide steps accordion
+ * @returns {void}
  */
 const handleGuideStateToggle = () => {
   if (guideStateToggle.getAttribute('aria-expanded') === 'true') {
@@ -216,8 +217,9 @@ const handleGuideStateToggle = () => {
 };
 
 /**
- Handles the input event of the checkboxes.
- @param {Event} ev - The input event.
+ * @description Handles the input event for the checkboxes, updating the SVG and opening the next setup step
+ * @param {Event} ev
+ * @returns {void}
  */
 const handleCheckboxInput = (ev) => {
   const checkbox = ev.target;
@@ -235,12 +237,12 @@ const handleCheckboxInput = (ev) => {
     parentSetupBtn.setAttribute('aria-expanded', 'false');
     nextSetupBtn.click();
   } else {
-    console.log('Unchecked');
+    return;
   }
 };
 
 // Event Listeners
-merchantProfileBtn.addEventListener('click', handleMerchantBtn);
+merchantProfileBtn.addEventListener('click', handleMerchantProfileBtnClick);
 closePromptBtn.addEventListener('click', closeTrialPrompt);
 notificationBtn.addEventListener('click', handleNotificationBtnClick);
 guideStateToggle.addEventListener('click', handleGuideStateToggle);

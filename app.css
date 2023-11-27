@@ -68,7 +68,7 @@
   --font-12px-regular: var(--text-12px-regular-font-size) /
       var(--text-12px-regular-line-height) 'Inter',
     sans-serif;
-  --font-12px-medium: bolder var(--text-12px-medium-font-size) /
+  --font-12px-medium: 500 var(--text-12px-medium-font-size) /
       var(--text-12px-medium-line-height) 'Inter',
     sans-serif;
   --font-12px-semi-bold: bold var(--text-12px-semi-bold-font-size) /
@@ -78,7 +78,7 @@
   --font-13px-regular: var(--text-13px-regular-font-size) /
       var(--text-13px-regular-line-height) 'Inter',
     sans-serif;
-  --font-13px-medium: bolder var(--text-13px-medium-font-size) /
+  --font-13px-medium: 500 var(--text-13px-medium-font-size) /
       var(--text-13px-medium-line-height) 'Inter',
     sans-serif;
   --font-13px-semi-bold: bold var(--text-13px-semi-bold-font-size) /
@@ -88,7 +88,7 @@
   --font-14px-regular: var(--text-14px-regular-font-size) /
       var(--text-14px-regular-line-height) 'Inter',
     sans-serif;
-  --font-14px-medium: bolder var(--text-14px-medium-font-size) /
+  --font-14px-medium: 500 var(--text-14px-medium-font-size) /
       var(--text-14px-medium-line-height) 'Inter',
     sans-serif;
   --font-14px-semi-bold: bold var(--text-14px-semi-bold-font-size) /
@@ -106,7 +106,7 @@ body {
   align-items: center;
   gap: 1em;
   padding: 1em;
-  background-color: var(--grey-200);
+  background-color: var(--grey-300);
 }
 
 .search-input-container {
@@ -149,7 +149,6 @@ body {
 
 .menu-notification-wrapper {
   display: flex;
-  align-items: center;
   gap: 1em;
 }
 
@@ -157,9 +156,6 @@ body {
   margin-left: auto;
 
   .notification-btn {
-    --grey-200: #303030; /* Colour too dim. Used "--grey-100 instead"
-   */
-
     background-color: transparent;
     color: var(--font-light);
     border-radius: 10px;
@@ -308,6 +304,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    font: var(--font-13px-regular);
+    letter-spacing: var(--text-13px-regular-letter-spacing);
   }
 
   & > li:hover {
@@ -395,6 +393,8 @@ main {
 
   position: relative;
   padding: 1em 3em 1em 0.75em;
+  font: var(--font-13px-medium);
+  letter-spacing: var(--text-13px-medium-letter-spacing);
 
   .close-prompt-btn {
     background: none;
@@ -425,6 +425,9 @@ main {
     & a {
       text-decoration: none;
       color: inherit;
+      outline: none;
+      font: var(--font-12px-semi-bold);
+      letter-spacing: var(--text-12px-semi-bold-letter-spacing);
     }
   }
 
@@ -432,7 +435,8 @@ main {
     background-color: #f7f7f7;
   }
 
-  .trial-call-to-action:focus-visible {
+  .trial-call-to-action:focus-visible,
+  .trial-call-to-action:has(a:focus-within) {
     background-color: #fff;
     outline: 2px solid var(--state-focused);
     outline-offset: 2px;
@@ -460,11 +464,13 @@ main {
   padding-top: 0.5em;
 
   & > h1 {
-    font-size: clamp(16px, 16px + 1vw, 20px);
+    font: var(--font-14px-semi-bold);
+    letter-spacing: var(--text-14px-semi-bold-letter-spacing);
   }
 
   & > p {
-    font-size: clamp(10px, 12px + 1vw, 16px);
+    font: var(--font-13px-regular);
+    letter-spacing: var(--text-13px-regular-letter-spacing);
   }
 
   .progress-container {
@@ -474,6 +480,8 @@ main {
   .progress-indicator {
     accent-color: #1a1a1a;
     transition: all 0.3s ease;
+    font: var(--font-12px-regular);
+    letter-spacing: var(--text-12px-regular-letter-spacing);
   }
 }
 
@@ -541,7 +549,20 @@ main {
     }
   }
 
+  .checkbox-container:not(:has(input:hover)) {
+    .hover-svg {
+      display: none;
+    }
+  }
+
   .checkbox-container:has(input:checked) {
+    .hover-svg,
+    .unchecked-svg {
+      display: none;
+    }
+  }
+
+  .checkbox-container:has(input:hover) {
     .unchecked-svg {
       display: none;
     }
@@ -560,12 +581,15 @@ main {
     outline: none;
     border: none;
     background: none;
-    font-size: clamp(12px, 12px + 1vw, 16px);
-    font-weight: bold;
     pointer-events: all;
     cursor: pointer;
     width: 100%;
     text-align: left;
+    color: var(--font-dark);
+    grid-area: btn;
+
+    font: var(--font-13px-medium);
+    letter-spacing: var(--text-13px-medium-letter-spacing);
   }
 
   &:has(.setup-step-btn:focus) {
@@ -579,17 +603,15 @@ main {
     position: relative;
   }
 
-  .setup-step-btn {
-    grid-area: btn;
-    font-size: clamp(12px, 12px + 1vw, 18px);
-  }
-
   .setup-step-info {
     grid-area: info;
-    font-size: clamp(10px, 10px + 1vw, 16px);
     max-height: 0;
     overflow-y: hidden;
     transition: max-height 0.5s ease;
+
+    font: var(--font-13px-medium);
+    letter-spacing: var(--text-13px-medium-letter-spacing);
+    color: var(--font-mid);
 
     display: flex;
     flex-direction: column;
@@ -618,8 +640,10 @@ main {
     position: relative;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: clamp(8px, 8px + 1vw, 14px);
     align-self: flex-start;
+    font: var(--font-12px-semi-bold);
+    letter-spacing: var(--text-12px-semi-bold-letter-spacing);
+    color: var(--plain-background);
   }
 
   .setup-step-call-to-action::after {
@@ -649,8 +673,42 @@ main {
   }
 }
 
+.setup-step:nth-of-type(2) {
+  .call-to-actions-container {
+    display: flex;
+    align-self: flex-start;
+    gap: 1em;
+  }
+
+  .setup-step-call-to-action:nth-of-type(2) {
+    background-color: transparent;
+    color: var(--font-dark);
+
+    &:hover {
+      background-color: var(--state-hover);
+    }
+
+    &:active {
+      background-color: var(--state-pressed);
+    }
+
+    &:focus-visible {
+      background-color: var(--font-light);
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
 .setup-step:has([aria-expanded='true']) {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #f3f3f3;
+
+  .setup-step-btn {
+    font: var(--font-13px-semi-bold);
+    letter-spacing: var(--text-13px-semi-bold-letter-spacing);
+  }
 
   .setup-step-info {
     max-height: 300px;
