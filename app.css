@@ -97,6 +97,15 @@
     sans-serif;
 }
 
+@keyframes roll {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 body {
   background-color: #f1f1f1;
 }
@@ -575,11 +584,12 @@ main {
     .hover-svg,
     .unchecked-svg,
     .checked-svg {
-      display: block;
+      display: none;
     }
 
     .loading-svg {
       display: block;
+      animation: roll 2s infinite forwards ease;
     }
   }
 

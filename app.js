@@ -243,6 +243,8 @@ const handleCheckboxInput = (ev) => {
   const checkbox = ev.target;
   const parentSetup = checkbox.closest('.setup-step');
   const parentSetupBtn = parentSetup.querySelector('.setup-step-btn');
+  const parentCheckBoxContainer = checkbox.closest('.checkbox-container');
+  const loadingSVG = parentCheckBoxContainer.querySelector('.loading-svg');
 
   const parentSetupBtnIndex =
     Array.from(setupStepsBtns).indexOf(parentSetupBtn);
@@ -252,8 +254,13 @@ const handleCheckboxInput = (ev) => {
   const nextSetupBtn = setupStepsBtns[nextSetupBtnIndex];
 
   if (checkbox.checked) {
-    parentSetupBtn.setAttribute('aria-expanded', 'false');
-    nextSetupBtn.click();
+    parentCheckBoxContainer.classList.add('loading');
+    setTimeout(() => {
+      loadingSVG.style.display = 'none';
+      parentCheckBoxContainer.classList.remove('loading');
+      parentSetupBtn.setAttribute('aria-expanded', 'false');
+      nextSetupBtn.click();
+    }, 2000);
   } else {
     return;
   }
