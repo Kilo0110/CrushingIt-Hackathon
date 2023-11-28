@@ -99,31 +99,50 @@ const closeTrialPrompt = () => {
  @description Handles keypress events within a tab trap.
  @param {Event} event - The keypress event.
  @param {Element} lastFocusedElement - The last focused element.
- @param {Element} firstTabStop - The first tab stop element in the tab trap.
- @param {Element} lastTabStop - The last tab stop element in the tab trap.
+ @param {NodeList} itemList - NodeList of elements in the tab trap.
  */
-const handleKeyPress = (
-  event,
-  lastFocusedElement,
-  firstTabStop,
-  lastTabStop
-) => {
-  if (event.keyCode === 9 && !event.shiftKey) {
-    if (document.activeElement === lastTabStop) {
-      event.preventDefault();
-      firstTabStop.focus();
-    }
+const handleKeyPress = (event, lastFocusedElement, itemList) => {
+  const listLength = itemList.length;
+  const firstTabStopIndex = 0;
+  const lastTabStopIndex = listLength - 1;
+
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
   }
-  if (event.keyCode === 9 && event.shiftKey) {
-    if (document.activeElement === firstTabStop) {
-      event.preventDefault();
-      lastTabStop.focus();
-    }
+
+  let currentActiveIndex = Array.from(itemList).indexOf(document.activeElement);
+
+  switch (event.key) {
+    case 'ArrowDown':
+    case 'ArrowRight':
+      // Do something for "down arrow" or "right arrow" key press.
+      if (currentActiveIndex === lastTabStopIndex) {
+        itemList[firstTabStopIndex].focus();
+      } else {
+        itemList[currentActiveIndex + 1].focus();
+      }
+      break;
+
+    case 'ArrowUp':
+    case 'ArrowLeft':
+      // Do something for "up arrow" or "left arrow" key press.
+      if (currentActiveIndex === firstTabStopIndex) {
+        itemList[lastTabStopIndex].focus();
+      } else {
+        itemList[currentActiveIndex - 1].focus();
+      }
+      break;
+
+    case 'Escape':
+      lastFocusedElement.focus();
+      break;
+
+    default:
+      return; // Quit when this doesn't handle the key event.
   }
-  if (event.keyCode === 27) {
-    lastFocusedElement.focus();
-    lastFocusedElement.click();
-  }
+
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
 };
 
 /**
@@ -131,27 +150,21 @@ const handleKeyPress = (
  @returns {void}
  */
 const handleMerchantProfileBtnClick = () => {
-  let lastFocusedElement;
-  let firstTabStop;
-  let lastTabStop;
-
   if (merchantProfileBtn.getAttribute('aria-expanded') === 'true') {
     merchantProfileBtn.setAttribute('aria-expanded', 'false');
   } else {
     merchantProfileBtn.setAttribute('aria-expanded', 'true');
   }
 
-  lastFocusedElement = document.activeElement;
+  let lastFocusedElement = document.activeElement;
   let focusableMenuItems = merchantMenu.querySelectorAll('a');
 
-  firstTabStop = focusableMenuItems[0];
-  lastTabStop = focusableMenuItems[focusableMenuItems.length - 1];
-
+  let firstTabStop = focusableMenuItems[0];
   firstTabStop.focus();
 
   focusableMenuItems.forEach((item) => {
     item.addEventListener('keyup', (event) =>
-      handleKeyPress(event, lastFocusedElement, firstTabStop, lastTabStop)
+      handleKeyPress(event, lastFocusedElement, focusableMenuItems)
     );
   });
 };
@@ -195,9 +208,14 @@ const openSetupStep = (ev) => {
 
   let lastFocusedElement = currentSetupBtn;
   let firstTabStop = focusableElements[0];
-  let lastTabStop = focusableElements[focusableElements.length - 1];
 
   firstTabStop.focus();
+
+  focusableElements.forEach((item) => {
+    item.addEventListener('keyup', (event) =>
+      handleKeyPress(event, lastFocusedElement, focusableElements)
+    );
+  });
 };
 
 /**
@@ -241,11 +259,34 @@ const handleCheckboxInput = (ev) => {
   }
 };
 
+/**
+ *@description Utility function to use the View Transition API to fade UI elements in or out using the browser
+ * @param {Function} callback function to run
+ * @returns {void}
+ */
+const useViewTransition = (callback) => {
+  if (!document.startViewTransition()) {
+    callback();
+  }
+
+  document.startViewTransition(() => {
+    callback();
+  });
+};
+
 // Event Listeners
-merchantProfileBtn.addEventListener('click', handleMerchantProfileBtnClick);
-closePromptBtn.addEventListener('click', closeTrialPrompt);
-notificationBtn.addEventListener('click', handleNotificationBtnClick);
-guideStateToggle.addEventListener('click', handleGuideStateToggle);
+merchantProfileBtn.addEventListener('click', () => {
+  useViewTransition(handleMerchantProfileBtnClick);
+});
+closePromptBtn.addEventListener('click', () => {
+  useViewTransition(closeTrialPrompt);
+});
+notificationBtn.addEventListener('click', () => {
+  useViewTransition(handleNotificationBtnClick);
+});
+guideStateToggle.addEventListener('click', () => {
+  useViewTransition(handleGuideStateToggle);
+});
 setupStepsBtns.forEach((btn) => {
   btn.addEventListener('click', openSetupStep);
 });

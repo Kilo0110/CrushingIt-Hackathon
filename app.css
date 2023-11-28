@@ -65,6 +65,7 @@
   --text-14px-semi-bold-line-height: 140%;
   --text-14px-semi-bold-letter-spacing: 0;
 
+  /* Use the font shorthand for setting font properties like so: font: <font-weight> <font-size> / <line-height> <font-family> */
   --font-12px-regular: var(--text-12px-regular-font-size) /
       var(--text-12px-regular-line-height) 'Inter',
     sans-serif;
@@ -107,6 +108,7 @@ body {
   gap: 1em;
   padding: 1em;
   background-color: var(--grey-300);
+  width: 100vw;
 }
 
 .search-input-container {
@@ -544,7 +546,8 @@ main {
   }
 
   .checkbox-container:not(:has(input:checked)) {
-    .checked-svg {
+    .checked-svg,
+    .loading-svg {
       display: none;
     }
   }
@@ -565,6 +568,18 @@ main {
   .checkbox-container:has(input:hover) {
     .unchecked-svg {
       display: none;
+    }
+  }
+
+  .checkbox-container.loading {
+    .hover-svg,
+    .unchecked-svg,
+    .checked-svg {
+      display: block;
+    }
+
+    .loading-svg {
+      display: block;
     }
   }
 
